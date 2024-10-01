@@ -6,7 +6,6 @@ export type CliForm = {
   isTypescript?: boolean;
   rootResourcesFolderPath?: string;
   hasNui?: boolean;
-  nuiRuntime?: "vue" | "react";
 };
 
 export type CliFormJs = CliForm & {
@@ -23,5 +22,4 @@ type CliFormClient = CliForm & {
 type CliFormClientNui = CliFormClient & {
   hasClientSide: true;
   hasNui: true;
-  nuiRuntime: "vue" | "react";
 };

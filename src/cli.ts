@@ -1,14 +1,13 @@
-import { program as commander } from "commander";
-import { join } from "path";
 import chalk from "chalk";
+import { program as commander } from "commander";
 import { mkdirSync } from "fs";
+import { join } from "path";
 
-import { CliForm, CliFormJs } from "types";
-import { cloneTemplate } from "./git";
+import { CliFormJs } from "types";
 import { displayCliForm } from "./form";
+import { cloneTemplate } from "./git";
 
 import { setupJsTemplate } from "./setup-js-template";
-import { setupLuaTemplate } from "./setup-lua-template";
 
 import packageJson from "../package.json";
 
@@ -27,12 +26,7 @@ export const createFivemResource = async () => {
   mkdirSync(resourcePath);
 
   const templateFolder = await cloneTemplate(options, resourcePath);
-
-  if (options.runtime === "js") {
-    await setupJsTemplate(resourcePath, templateFolder, options as CliFormJs);
-  } else {
-    await setupLuaTemplate(resourcePath, options as CliForm);
-  }
+  await setupJsTemplate(resourcePath, templateFolder, options as CliFormJs);
 };
 
 const parseArguments = (program = commander) => {

@@ -1,7 +1,7 @@
-import prompts from "prompts";
-import { join } from "path";
-import { existsSync } from "fs";
 import chalk from "chalk";
+import { existsSync } from "fs";
+import { join } from "path";
+import prompts from "prompts";
 
 import { CliForm } from "./types";
 import { getRootResourcesFolderPath } from "./utils";
@@ -33,21 +33,8 @@ export const displayCliForm = async () => {
   );
   options = { ...options, resourceName };
 
-  const { runtime } = await prompts(
-    {
-      type: "select",
-      name: "runtime",
-      message: "Runtime:",
-      choices: [
-        { title: "Lua", value: "lua" },
-        { title: "JavaScript", value: "js" },
-      ],
-    },
-    { onCancel: cancel }
-  );
-  options = { ...options, runtime };
+  options = { ...options };
 
-  if (runtime === "js") {
     let rootResourcesFolderPath = getRootResourcesFolderPath(process.cwd());
 
     if (!rootResourcesFolderPath) {
@@ -80,7 +67,7 @@ export const displayCliForm = async () => {
       { onCancel: cancel }
     );
     options = { ...options, rootResourcesFolderPath, isTypescript };
-  }
+  
 
   const { hasClientSide } = await prompts(
     {
@@ -121,22 +108,6 @@ export const displayCliForm = async () => {
       { onCancel: cancel }
     );
     options = { ...options, hasNui };
-
-    if (hasNui) {
-      const { nuiRuntime } = await prompts(
-        {
-          type: "select",
-          name: "nuiRuntime",
-          message: "NUI runtime:",
-          choices: [
-            { title: "Vue", value: "vue" },
-            { title: "React", value: "react" },
-          ],
-        },
-        { onCancel: cancel }
-      );
-      options = { ...options, nuiRuntime };
-    }
   }
 
   return options as CliForm;

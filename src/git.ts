@@ -1,33 +1,25 @@
+import { cpSync, mkdirSync, rmSync } from "fs";
+import { join } from "path";
 import simpleGit from "simple-git";
 import { CliForm } from "types";
-import { join } from "path";
-import { mkdirSync, cpSync, rmSync } from "fs";
 
-const repoUrl = "https://github.com/JustinMartinDev/fivem-resource-templates";
+const repoUrl = "https://github.com/heeyzim/fivem-resource-templates";
 const rawRepoUrl =
-  "https://raw.githubusercontent.com/JustinMartinDev/fivem-resource-templates/main";
+  "https://raw.githubusercontent.com/heeyzim/fivem-resource-templates/main";
 
 const getInternalTemplatePath = (options: CliForm) => {
   let templateFolderName = "";
 
-  if (options.runtime === "lua") {
-    templateFolderName = "lua-";
-  } else if (!options.isTypescript) {
+  if (!options.isTypescript) {
     templateFolderName = "javascript-";
   } else if (options.isTypescript) {
     templateFolderName = "typescript-";
   }
 
   if (options.hasNui) {
-    templateFolderName += "nui-";
+    templateFolderName += "nui-react";
   } else {
     templateFolderName += "vanilla";
-  }
-
-  if (options.nuiRuntime === "react") {
-    templateFolderName += "react";
-  } else if (options.nuiRuntime === "vue") {
-    templateFolderName += "vue";
   }
 
   return templateFolderName;
