@@ -2,7 +2,11 @@
   "name": "@repyx/create",
   "version": "1.0.0",
   "license": "MIT",
-  "repository": "https://github.com/heeyzim/repyx-create",
+  "author": "Heeyzim",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/heeyzim/repyx-create.git"
+  },
   "keywords": [
     "fivem",
     "resource",
@@ -11,7 +15,7 @@
     "cli"
   ],
   "bin": {
-    "create-fivem-resource-repyx": "./dist/src/index.js"
+    "repyx-create": "dist/src/index.js"
   },
   "files": [
     "dist"
@@ -36,5 +40,11 @@
     "eslint": "^9.11.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.3"
-  }
+  },
+  "description": "<h1 align=\"center\">Create FiveM Resource</h1>",
+  "main": "index.js",
+  "bugs": {
+    "url": "https://github.com/heeyzim/repyx-create/issues"
+  },
+  "homepage": "https://github.com/heeyzim/repyx-create#readme"
 }
