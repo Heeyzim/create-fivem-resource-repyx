@@ -12,7 +12,7 @@ import { setupJsTemplate } from "./setup-js-template";
 import packageJson from "../package.json";
 
 export const createFivemResource = async () => {
-  console.log("\nFiveM Resource Boilerplate CLI\n");
+  console.log("\nRepyx FiveM Resource Boilerplate CLI\n");
 
   let options = await displayCliForm();
 
@@ -32,7 +32,7 @@ export const createFivemResource = async () => {
 const parseArguments = (program = commander) => {
   program
     .version(packageJson.version, "-v, --version", "output the current version")
-    .description("FiveM resource boilerplate CLI")
+    .description("Repyx FiveM resource boilerplate CLI")
     .action(createFivemResource);
 
   program.parse(process.argv);
