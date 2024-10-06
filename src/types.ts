@@ -3,7 +3,6 @@ export type CliForm = {
   runtime: "lua" | "js";
   hasClientSide: boolean;
   hasServerSide: boolean;
-  isTypescript?: boolean;
   rootResourcesFolderPath?: string;
   hasNui?: boolean;
 };
@@ -11,7 +10,6 @@ export type CliForm = {
 export type CliFormJs = CliForm & {
   runtime: "js";
   rootResourcesFolderPath: string;
-  isTypescript: boolean;
 };
 
 type CliFormClient = CliForm & {

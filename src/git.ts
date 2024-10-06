@@ -8,13 +8,7 @@ const rawRepoUrl =
   "https://raw.githubusercontent.com/heeyzim/fivem-resource-templates/main";
 
 const getInternalTemplatePath = (options: CliForm) => {
-  let templateFolderName = "";
-
-  if (!options.isTypescript) {
-    templateFolderName = "javascript-";
-  } else if (options.isTypescript) {
-    templateFolderName = "typescript-";
-  }
+  let templateFolderName = "typescript-";
 
   if (options.hasNui) {
     templateFolderName += "nui-react";

@@ -55,18 +55,8 @@ export const displayCliForm = async () => {
       rootResourcesFolderPath = response.rootResourcesFolderPath;
     }
 
-    const { isTypescript } = await prompts(
-      {
-        type: "toggle",
-        name: "isTypescript",
-        message: "Add TypeScript?",
-        initial: true,
-        active: "Yes",
-        inactive: "No",
-      },
-      { onCancel: cancel }
-    );
-    options = { ...options, rootResourcesFolderPath, isTypescript };
+    
+    options = { ...options, rootResourcesFolderPath };
   
 
   const { hasClientSide } = await prompts(

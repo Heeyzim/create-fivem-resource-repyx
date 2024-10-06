@@ -30,12 +30,5 @@ export const transformReadme = (path: string, options: CliForm) => {
     );
   }
 
-  if (!options.isTypescript) {
-    transformedReadme = transformedReadme.replace(
-      "**Types** - `./types/exports.d.ts`",
-      ""
-    );
-  }
-
   writeFileSync(path, transformedReadme);
 };

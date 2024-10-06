@@ -1,0 +1,39 @@
+name: Publish to NPM using pnpm
+on:
+  push:
+    branches:
+      - main
+      - beta # Você pode adicionar branches específicas para diferentes tags
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org/'
+
+      - name: Install pnpm
+        run: |
+          corepack enable
+          corepack prepare pnpm@latest --activate
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build package
+        run: pnpm run build
+
+      - name: Publish to NPM
+        run: |
+          if [[ "${{ github.ref }}" == "refs/heads/main" ]]; then
+            pnpm publish --no-git-checks --tag latest
+          elif [[ "${{ github.ref }}" == "refs/heads/beta" ]]; then
+            pnpm publish --no-git-checks --tag beta
+          fi
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
