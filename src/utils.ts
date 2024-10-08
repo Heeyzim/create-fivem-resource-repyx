@@ -1,6 +1,6 @@
 import chalk from "chalk";
-import { basename, join } from "path";
 import { readdirSync, statSync } from "fs";
+import { basename, dirname, join } from "path";
 
 import { getRawTemplateFile } from "./git";
 
@@ -13,7 +13,11 @@ export const getRootResourcesFolderPath = (cwd: string): string | undefined => {
 
   // Check if currentFolder match [***] pattern
   if (/\[.+\]/.test(currentFolder)) {
-    return getRootResourcesFolderPath(cwd.split("/").slice(-1).join("/"));
+    const parentFolder = dirname(cwd);
+    if (parentFolder === cwd) {
+      return undefined;
+    }
+    return getRootResourcesFolderPath(parentFolder);
   }
 
   return undefined;
